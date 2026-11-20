@@ -16,9 +16,9 @@ Proyek ini dibangun menggunakan arsitektur terdistribusi dengan Apache Kafka seb
 - Sumber Data: API Publik Wikimedia EventStreams (/v2/stream/recentchange) menggunakan format SSE (Server-Sent Events) / JSON.
 - Node Master (Data Ingestion): Skrip Producer Python berjalan di PC Master untuk menarik data, memfilter field, menyamarkan IP pengguna (SHA-256), dan mengirimnya ke Kafka Broker.
 - Node Worker / Klaster (Data Processing): Terdiri dari 1 Spark Master dan 2 Spark Worker. Pemrosesan dilakukan menggunakan:
-- Spark RDD: Parsing JSON, Narrow/Wide Transformations, dan perbandingan kinerja reduceByKey vs groupByKey.
-- Spark SQL / DataFrame: Analisis statistik bot vs manusia dan deteksi lonjakan anomali dengan ambang batas Persentil ke-99 (P99 Tumbling Window).
-- Structured Streaming: Pemrosesan aliran data real-time dengan window 1 menit, toleransi keterlambatan (watermark) 2 menit, dan checkpointing untuk pemulihan kegagalan (fault-tolerance).
+1. Spark RDD: Parsing JSON, Narrow/Wide Transformations, dan perbandingan kinerja reduceByKey vs groupByKey.
+2. Spark SQL / DataFrame: Analisis statistik bot vs manusia dan deteksi lonjakan anomali dengan ambang batas Persentil ke-99 (P99 Tumbling Window).
+3. Structured Streaming: Pemrosesan aliran data real-time dengan window 1 menit, toleransi keterlambatan (watermark) 2 menit, dan checkpointing untuk pemulihan kegagalan (fault-tolerance).
 
 📂 Struktur Repositori
 
